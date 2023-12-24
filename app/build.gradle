@@ -3,6 +3,18 @@ plugins {
     id 'org.cyclonedx.bom' version '1.8.1'
 }
 
+cyclonedxBom {
+    includeConfigs = ["runtimeClasspath"]
+    skipConfigs = ["compileClasspath", "testCompileClasspath"]
+    projectType = "application"
+    schemaVersion = "1.5"
+    destination = file("build/reports")
+    outputName = "bom"
+    outputFormat = "all"
+    includeBomSerialNumber = true
+    componentVersion = "2.0.0"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'io.objectbox'
 
@@ -94,3 +106,5 @@ android.applicationVariants.all { variant ->
         output.outputFileName = new File(newApkName)
     }
 }
+
+build.finalizedBy('cyclonedxBom')
