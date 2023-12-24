@@ -5,6 +5,14 @@ plugins {
 
 cyclonedxBom {
     includeConfigs = ["runtimeClasspath"]
+    skipConfigs = [
+        "debugCompileClasspath",
+        "debugAndroidTestCompileClasspath",
+        "debugUnitTestCompileClasspath",
+        "releaseUnitTestCompileClasspath",
+        "debugUnitTestRuntimeClasspath",
+        "releaseUnitTestRuntimeClasspath"
+    ]
     skipConfigs = ["compileClasspath", "testCompileClasspath"]
     projectType = "application"
     schemaVersion = "1.5"
